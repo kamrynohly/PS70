@@ -10,6 +10,18 @@ a {
     color: blueviolet;
 }
 
+.middle-sized-image {
+    width: 85%;
+}
+
+.full-image {
+    width:100%;
+}
+
+.small-image {
+    width: 48%;
+}
+
 /* Navigation Bar Styles */
 .bg-navbar {
     background-color: palevioletred;
