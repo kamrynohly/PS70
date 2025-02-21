@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>🌟 Week 03 Documentation</title>
+        <!-- Bootstrap Library -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Links to Stylesheet & JS -->
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../scripts.js"></script>
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- Navigational Bar of the Website -->
+        <nav class="navbar navbar-expand-lg bg-navbar">
+            <!-- Navigational links -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about/about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../final_project/final_project.html">Final Project</a>
+                </li>
+                </ul>
+            </div>
+
+            <!-- Coffee Icon (takes you home) -->
+            <a class="justify-content-end" href="../index.html"><img id="coffee-icon" src="../about/about_images/coffee_icon.gif"></a>
+        </nav>
+        <div class="container">
+            <br><br>
+            <center><h2>Week 03</h2></center>
+            <br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>My Ideas</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                       This week, I started with a bit too complicated of a design! I was interested in how we can create subtle movements with laser cutting & working with motors,
+                       and so I decided to start looking into my second project idea - a latte art machine!
+                       I was hoping to create a machine that could simulate the pouring of milk into a coffee cup with little "wiggle" motions.
+                       There are many movements involved in making latte art, so I was hoping to start by just doing one of them. I started by watching a multitude of Youtube videos about latte art, trying to mathematically understand and calculate what motions are necessary.
+                       In particular, I really enjoyed this video!
+                       <br>
+                       <br>
+                       <iframe width="560" height="315" src="https://www.youtube.com/embed/SiefJJv-Qho?si=1Yf43yXjqDnyaeDG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                       <br>
+                       <br>
+                       Despite watching so many videos and drawing tons of ideas on paper, I was truly struggling to visualize how I could create a kinetic sculpture that could do these types of motions.
+                       After many drawings that did and did not make it to Fusion, I had a much better idea: start simple & grow in complexity!
+                       <br>
+                       <br>
+                       After realizing that I could and <i>should</i> start with simpler motions before diving into a complicated one, I decided that I wanted to recreate a miniature ferris wheel.
+                       This ferris wheel is a bit inspired by my favorite one back at home (photo below of the 145 foot tall one). I figured that this project would allow me for a gentler way to learn how to connect motors with laser cutting, & to test out the different machines that we have learned!
+                    </p>
+                    <img class="middle-sized-image" src="Photos/cedar_point_wheel.jpg">
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>My Ferris Wheel Iteration #1:</h4>
+                </div>
+                <div class="col-md-8">
+                    <p><a href="Files/FerrisWheel2 v0.f3d" download>Download my main Fusion file here!</a></p>
+                    <video width="640" height="480" controls>
+                        <source src="Photos/FinalProduct.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                      </video>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>The Process</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        I decided to start by modeling the ferris wheel completely in Fusion, including both wheel-sides connect with cylinders. 
+                        I quickly realized that in order to truly understand how to create movement in the wheels that I would need to stop drawing & modeling and start printing ASAP.
+                        I decided to print out my first iteration in cardboard, as I expected to encounter many mistakes. This was a good call! I began by creating the wheel design in Fusion,
+                        as well as legs and a small buffer circle to print. I used an inscribed polygon & series of parameters (of guesses for sizing) for creating the design of the wheel.
+                        I then used guiding lines to create rectangles tangent to the polygon so that I could cut out sections of the polygon.
+                    </p>
+                    <img class="small-image" src="Photos/WheelCreation.png">
+                    <img class="small-image" src="Photos/WheelCreation2.png">
+                    <p>After creating the basic foundations in Fusion, I came into the lab and worked to print on the laser cutter. Before I did so, I searched the lab to see if I could find a cylinder
+                        that would be able to be used to help the wheel turn, and I was able to find a convenient plastic cylinder to use. I measured it using calipers to see that it was 7.9mm, so I added holes into the wheels, buffers, and stands so that
+                        the cylinder could fit through them. I then printed! I was incredibly happy with how the first print turned out, and it also helped me to realize that certain pieces would be better to be cut in thicker materials. In particular, the buffers between 
+                        the stand, the motor, and the wheel fell apart quite quickly. I recut just those pieces in wood, but I hope to update the ferris wheel to be entirely wood soon!
+                    </p>
+                    <img class="small-image" src="Photos/LaserCutting.jpg">
+                    <p>
+                        <br>
+                        <br>
+                        With a few pieces in hand, it became much easier to visualize how to connect the motor and to create the spinning motion! I decided to setup the wheel with masking tape as a way of testing quickly.
+                        By holding the cylinder in my hand and rotating it, I was confident that I could make a few more "permanent" changes and create a holder for the motor.
+                    </p>
+                    <video width="640" height="480" controls>
+                        <source src="Photos/OriginalFerrisWheel.mov" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                    <br>
+                    <br>
+                    <p>
+                        With the wheel setup, I practiced by taping the motor to the cylinder directly, yet I quickly realized that I needed a way to hold the motor's shaft more securely.
+                        Thus, in Fusion, I created a holder for the motor that I could connect with glue to the other pieces of the project. See a photo of my design in Fusion and my original approach to holding the motor:
+                    </p>
+                    <video width="640" height="480" controls>
+                        <source src="Photos/HoldingMotor.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                    <img class="middle-sized-image" src="Photos/MotorHolder.png">
+                    <br>
+                    <br>
+                    <p>
+                        After creating the motor holder, I used the scraps from printing the wheel to create a stand to hold the motor in place in addition to using the new piece.
+                        It was at this point that I decided that I would use the hot glue gun to secure my wheel. When I update the wheel to be made with wood, I'll likely try to use screws instead,
+                        as the turning motion caused the glue to come undone occasionally. After I secured the wheel together with the motor in the proper place, I realized that I never cut the cylinder
+                        between the wheels to be shorter. Thus, it was awkwardly sticking out. I decided to test my experience with the tools that we learned to use the power saw to cut the piece, except I made the mistake 
+                        of not taking apart the whole wheel and trying to strongly hold it. This caused the wheel to essentially tear itself apart, but I was able to salvage it and snap the cylinder in half into a more appropriate size.
+                        It then had a sharp edge, so I placed pink masking tape to avoid the sharp edge. At this point, the wheel was functional, yet it didn't look like a ferris wheel! 
+                        Lastly, I used some scraps and cut them into the shape of seats, decorating them with colorful masking tape. Next time, I'll definitely want to make the wheel and seats more aesthetically pleasing,
+                        and I'd also like to make seats that do not turn upside-down with the wheel. I am looking forward to continuing to iterate, but for now, here is my Week 3 Project!
+                    </p>
+                </div>
+                <video width="1280" height="900" controls>
+                    <source src="Photos/FinalProductCloser.MOV" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+            </div>
+            <br><br><br>
+            <br>
+        </div>
+    </body>
+</html>
