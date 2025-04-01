@@ -65,13 +65,15 @@
                     </p>
                 </div>
             </div>
-            <br><br>
+            <!-- <br><br>
+            <hr></h>
             <div class="row">
-                <h2>
-                    Project Timeline and Strategy
-                    <br><br>
-                </h2>
-
+                <center>
+                    <h2>
+                        Project Timeline and Strategy
+                        <br><br>
+                    </h2>
+                </center>
                 <div class="col-md-4">
                     <h4>Description of Project</h4>
                 </div>
@@ -94,6 +96,160 @@
                             Today: Finish the timeline!!
                         </li>
                     </ul>
+                </div>
+            </div> -->
+            <br><br><br>
+            <hr>
+            <div class="row">
+                <center>
+                    <h2>
+                        MVP
+                        <br><br>
+                    </h2>
+                </center>
+                <div class="col-md-4">
+                    <h4>Approach & MVP Goals</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                       For my minimum viable product, I had a couple of goals set for myself. First, I will describe what I hoped to create,
+                       and then how I approached the building of the MVP.
+                        <br><br>
+                        First, I decided that I would approach my idea for a Wifi/Bluetooth-enabled machine that could brew your coffee
+                        on demand from your phone or scheduled in advance. The name is likely also an MVP (I can find a better one) - CoffeeClip.
+                        The idea for the final version is that this coffee clip can be attached to any common machine, so that you don't have to spend 
+                        a fortune buying a specific machine to have these capabilities. Instead, the coffee clip will be able to adapt height-wise and width-wise to attach
+                        to Keurigs, Nespressos, or even tea kettles. 
+                        <br><br>
+                        For my MVP, I decided that I would try to create the CoffeeClip for one machine and to create the behind-the-scenes software that allows it to 
+                        run. By focusing on one machine, I can see what technical details are involved, which I hope will then make expanding out to be more flexible
+                        a bit easier (as I will know what challenges I might encounter).
+                        <br><br>
+                        In order to work on the MVP, I needed a place to get started, so I broke down my MVP into a few different objectives:
+                        <ul>
+                            <li>Connect the ESP32 to Wifi or Bluetooth (Decide which is better)</li>
+                            <li>Determine the best way to connect a website & an iPhone app to the ESP32</li>
+                            <li>Code the software that enables communication between users and the ESP32</li>
+                            <li>Identify the best motor to accomplish the "pressing button" action</li>
+                            <li>Build a holder and an arm for the motor</li>
+                            <li>Design a way to attach the motor, holder, and arm to my Nespresso machine</li>
+                            <li>Connect the hardware to the software!</li>
+                        </ul>
+                        <br>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Software & Decisions</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Since I knew that I wouldn't be able to easily build the hardware while at home for Spring Break,
+                        I instead focused primarily on the software. I believed that this would be the more time-consuming and challenging part of
+                        my MVP since my work in software has never interacted with hardware in this way before. I started by talking with the course teaching staff
+                        and looking into the benefits and downsides of Wifi vs. Bluetooth. My goal is that I could be able to start brewing a coffee at home 
+                        while I am walking back from class (where I am not in Bluetooth range), yet I also wanted to make sure that the device doesn't necessarily need to be
+                        on the same Wifi as my phone in order to work. In particular, I didn't want to switch from Harvard Secure to Harvard University Wifi only 
+                        to be able to activate my coffee machine! I need to do this with some of my devices and it is tedious and not a great user experience.
+                        After considering options, I determined that I would use Wifi to power my device, and I would connect the ESP32 to a Google Firebase 
+                        Realtime database which can be accessed via the Wifi. If all communication between the device and the database, then 
+                        my phone or laptop can connect to the database from anywhere over Wifi as well. This means that I can be out-of-range and on different Wifi,
+                        which I hope will make a better experience. As a benefit, this also streamlines the communication process. 
+                        <br><br>
+                        What does the communication process look like for the ESP32? The ESP32 has a connection with the Firebase Realtime Database and loops over a request to 
+                        check for changes to the database. If the ESP32 detects a change to the database, then, using a custom class CoffeeClip, it will parse the change 
+                        and respond accordingly. If the change indicates that the user would like to request a coffee on demand, then the database would update to show a 
+                        pending request for a coffee. The ESP32 can detect the pending request and proceed to brew the coffee, updating the database to mark the request 
+                        as completed with a timestamp of completion as a final step. This is quite convenient to do given that the ESP32 is constantly looping, which makes 
+                        monitoring the database for changes quite nice to do!
+                    </p>
+                    <br>
+                    <img class="medium-sized-image" src="Photos/FirebaseDB.png">
+                    <br>
+                    <p>
+                        <br><br>
+                        How does a device communicate with the database? I knew that I wanted to be able to run the coffee machine from either my laptop or my phone. 
+                        A few ambitious ideas that I have are to connect my google calendar to my coffee machine to brew coffees in between events when I have denoted that I am going home in-between (this is a stretch goal)!
+                        Thus, I wanted to be able to host both a website and iOS application. For my MVP, I decided to focus on a website that connects to Firebase and has a simple interface 
+                        so that I can request a coffee on demand or schedule a coffee to be made at a given time. The website for the MVP will not have design elements, but will focus
+                        purely on a functionality perspective. I also worked on (and am continuing to work on) creating an iOS application which can control the same components.
+                    </p>
+                    <br>
+                    <img class="medium-sized-image" src="Photos/App.png">
+                    <br>
+                    <p>
+                        <br>
+                        I started working on the software to make this all happen over Spring Break, starting with the Arduino code since I knew that I was more unfamiliar with it.
+                        I utilized the Firebase ESP32 Client and Wifi packages to aid in communicating with the database. I used Firebase via Google since I knew it is free and has 
+                        great documentation. I then created two classes, one called DatabaseManager which manages monitoring the database and making writes to it when necessary. 
+                        I also made a class called CoffeeClip that would separately manage the eventual movement of the servo and balancing the results from the database with 
+                        the necessary physical actions. I worked on these two classes separately so that I could learn a bit more about both along the way. I am still working on 
+                        combining these two files and functionalities, however. 
+                        <br><br>
+                        More coming soon!
+                    </p>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Hardware</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        When I returned from Spring Break, I began working on the hardware. Originally, I pictures the pressing mechanism to be on the countertop with
+                        coffee machine that would extend up. However, while I was working, it was very unstable. I then scrapped my original models and started over. 
+                        I decided that the mechanism could hold onto the coffee machine horizontally, instead of both vertically and horizontally. I then built a servo holder,
+                        which took a TON of time. I also needed to make a Servo holder, which I did from scratch in Fusion. While printing the arm of the Servo, I started 
+                        to notice the imperfections of 3D printing, where it kept being ever-so-slightly too small, but I did not want to make over-corrections. I ended up 
+                        reprinting multiple times, and I still need to refine the dimensions.
+                        <br>
+                    </p>
+                    <img class="medium-sized-image" src="Photos/Fails.JPG">
+                    <img class="medium-sized-image" src="Photos/OnMachine.JPG">
+                    <br><br>
+                    <p>
+                        After building this original setup, I realized something devastating - the servo arm does not have enough strength 
+                        to click the button on the machine. I needed to find a way to increase the torque by adding gears that then have 
+                        the power to push the button. Thus, I started modeling gears in Fusion and attempting to connect them to the servo.
+                        Originally, I planned on screwing in the smaller gear into the Servo and then attaching the larger gear beside it to 
+                        hold the arm. I printed these and after many attempts, I was able to get each part to fit properly!
+                    </p>
+                    <br>
+                    <img class="medium-sized-image" src="Photos/Gears.png">
+                    <br><br>
+                    <video width="640" height="480" controls>
+                        <source src="Photos/ErrorVideo.MOV" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>
+                        <br>
+                        It was at this point that I realized another devastating mistake that I had make. It did not cross my mind 
+                        that by screwing the gears into the arm and the Servo that it could slip or might not turn successfully. I realized 
+                        that I needed to fit the gear around the Servo instead, and that the arm would need to be directly attached. 
+                        In order to get the gear to fit around the Servo, I would need to be incredibly precise, or I would face the same issue.
+                        I had substantive doubt around whether or not the 3D printer could achieve the level of precision needed to fit around the servo with 
+                        the shape that could hold onto it properly, yet I had amazing luck that it worked on the first try!
+                        <br><br>
+                        <u>As of now, I still need to attach the arm to the larger gear and to refine the way that the hardware 
+                            is attached to the Nespresso, but I hope that through these learning experiences and the connection of the software
+                            to hardware that this is a viable MVP. Thank you!
+                        </u>
+                    </p>
+                    <br>
+                    <img class="medium-sized-image" src="Photos/UpdatesApril1.JPG">
+                    <br><br>
+                    <p>
+                        <br>
+                        Here are my current Fusion files, and much more to come!
+                        <ul>
+                            <li><a href="Files/ClipHolder v4.f3d" download>Attachment to Nespresso Holder</a></li>
+                            <li><a href="Files/ServoArm v6.f3d" download>Servo Arm</a></li>
+                            <li><a href="Files/ServoHolder v3.f3d" download>Servo Holder</a></li>
+                        </ul>
+                        <br>
+                    </p>
                 </div>
             </div>
         </div>
