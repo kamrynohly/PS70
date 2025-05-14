@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>🌟 Week 04 Documentation</title>
+        <!-- Bootstrap Library -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Links to Stylesheet & JS -->
+        <link rel="stylesheet" href="../styles.css">
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <!-- For Showing Code Nicely -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    </head>
+    <body>
+        <!-- Navigational Bar of the Website -->
+        <nav class="navbar navbar-expand-lg bg-navbar">
+            <!-- Navigational links -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about/about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../final_project/final_project.html">Final Project</a>
+                </li>
+                </ul>
+            </div>
+
+            <!-- Coffee Icon (takes you home) -->
+            <a class="justify-content-end" href="../index.html"><img id="coffee-icon" src="../about/about_images/coffee_icon.gif"></a>
+        </nav>
+        <div class="container">
+            <br><br>
+            <center><h2>Week 04</h2></center>
+            <br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>My Microcontroller Project</h4>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      For the microcontroller project, I decided to see if I could get the ESP32 XIAO to play a few tones on a speaker, resembling Sabrina Carpenter's song espresso!
+                      <br><br>
+                      I started this project with an Arduino template for playing melodies, by Tom Igoe in the ESP32 library. I thought this would be relatively straightforward, until I discovered that the XIAO does not 
+                      have DAC pins, which would allow for me to communicate necessary info to the speaker. I then attempted to find a simple workaround for the XIAO before deciding to pivot to an ESP32-S3 Dev Board, which could support 
+                      functionalities such as the built-in "tone" function. I used pin 8 to connect as an output, and I proceeded to test different tones at different hertz in order to replay the melody! 
+                      <br><br>
+                      This was so much fun, and much more friendly to do once I had the proper set-up! Here is my code, as well as a video of the song!
+                    </p>
+                    <video width="320" height="240" controls>
+                        <source src="Files/Demo.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+<pre>
+    <code class="language-cpp">
+/*
+    EspressoSong
+    
+    Plays a line of Espresso by Sabrina Carpenter!
+*/ 
+#include "pitches.h"
+      
+// Verse - "I can't relate to desperation, my give a **** are on vacation"
+int verse[] = {
+    NOTE_E4, NOTE_E4, NOTE_C4, NOTE_G4, NOTE_G4, NOTE_A4, NOTE_C5, NOTE_D5, NOTE_C5,
+    NOTE_F4, NOTE_E4, NOTE_C4, NOTE_G4, NOTE_G4, NOTE_A4, NOTE_C5, NOTE_D5, NOTE_E5
+};
+
+// Each value corresponds to a 1/x note, where 1/8 is an eighth note, 1/4 is a quarter note, etc.
+int verseNoteDurations[] = {
+    4, 4, 4, 1, 4, 4, 4, 4, 2,
+    4, 4, 4, 1, 4, 4, 4, 2, 2
+};
+
+int melody[] = {
+    // Thinkin 'bout me every night oh (pause)
+    NOTE_D4, NOTE_A4, NOTE_C5, NOTE_C5, NOTE_C5, NOTE_E5, NOTE_A4, NOTE_A4, NOTE_A4, NOTE_B4, 0,
+    // Isn't that sweet? I guess so
+    NOTE_G4, NOTE_G4, NOTE_G4, NOTE_B4, NOTE_C5, NOTE_B4, NOTE_B4, NOTE_A4
+};
+
+int melodyNoteDurations[] = {
+    8, 8, 4, 8, 8, 4, 8, 8, 4, 4, 16,
+    8, 8, 4, 8, 8, 4, 8, 8
+};
+      
+// The pin connecting power & info to the speaker
+int tonePin = 8;
+      
+void setup() {
+    // No setup needed!
+}
+
+void loop() {
+    // Replay melody every 5 seconds...
+    delay(5000);
+    
+    // Iterate over verse!
+    for (int note = 0; note < 18; note++) {
+        int noteDuration = 1000 / verseNoteDurations[note];
+        // Start the tone to play on speaker
+        tone(8, verse[note], noteDuration);
+    
+        int pauseBetweenNotes = noteDuration * 1.30;
+        delay(pauseBetweenNotes);
+    
+        // Stop the tone
+        noTone(8);
+    }
+    
+    delay(2000);
+      
+    // Iterate over melody!
+    for (int note = 0; note < 19; note++) {
+        int noteDuration = 1000 / melodyNoteDurations[note];
+        // Start the tone to play on speaker
+        tone(8, melody[note], noteDuration);
+    
+        int pauseBetweenNotes = noteDuration * 1.30;
+        delay(pauseBetweenNotes);
+    
+        // Stop the tone
+        noTone(8);
+    }
+}
+    </code>
+</pre>
+                </div>
+            </div>
+
+        </div>
+        <!-- Prism JS for displaying code -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    </body>
+</html>
